@@ -1,13 +1,4 @@
-import { createBrowserRouter } from 'react-router'
-import React from 'react'
-import routerPaths from './routerPaths'
+import router from './router'
+import { ROUTES } from './routes'
 
-const router = createBrowserRouter([
-  {
-    path: routerPaths.main,
-    element: React.createElement('div', null, 'Hello World'),
-  },
-])
-
-export { routerPaths }
-export default router
+export { router, ROUTES }
