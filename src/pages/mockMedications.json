@@ -1,0 +1,62 @@
+[
+  {
+    "id": "MED-001",
+    "name": "Paracetamol 500mg",
+    "category": "Analgesic",
+    "batchNumber": "BATCH-2026-01",
+    "quantity": 150,
+    "expiryDate": "2027-03-15",
+    "location": "A1-03",
+    "requiresPrescription": false
+  },
+  {
+    "id": "MED-002",
+    "name": "Ibuprofen 400mg",
+    "category": "Anti-inflammatory",
+    "batchNumber": "BATCH-2026-02",
+    "quantity": 90,
+    "expiryDate": "2026-11-20",
+    "location": "A1-07",
+    "requiresPrescription": false
+  },
+  {
+    "id": "MED-003",
+    "name": "Amoxicillin 500mg",
+    "category": "Antibiotic",
+    "batchNumber": "BATCH-2026-03",
+    "quantity": 60,
+    "expiryDate": "2026-09-01",
+    "location": "B2-04",
+    "requiresPrescription": true
+  },
+  {
+    "id": "MED-004",
+    "name": "Metformin 850mg",
+    "category": "Antidiabetic",
+    "batchNumber": "BATCH-2026-04",
+    "quantity": 120,
+    "expiryDate": "2027-01-10",
+    "location": "C1-02",
+    "requiresPrescription": true
+  },
+  {
+    "id": "MED-005",
+    "name": "Atorvastatin 20mg",
+    "category": "Cardiovascular",
+    "batchNumber": "BATCH-2026-05",
+    "quantity": 75,
+    "expiryDate": "2026-12-05",
+    "location": "C3-06",
+    "requiresPrescription": true
+  },
+  {
+    "id": "MED-006",
+    "name": "Vitamin D3 2000 IU",
+    "category": "Supplement",
+    "batchNumber": "BATCH-2026-06",
+    "quantity": 200,
+    "expiryDate": "2028-02-18",
+    "location": "D1-01",
+    "requiresPrescription": false
+  }
+]

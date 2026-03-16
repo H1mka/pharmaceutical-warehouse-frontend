@@ -1,3 +1,7 @@
 export const ROUTES = {
-  HOME: '/',
-}
+  HOME: "/",
+  SETTINGS: "/settings",
+  REPAIR: "/repair",
+  PHARMACIST: "/pharmacist",
+  CUSTOMER: "/customer",
+};
