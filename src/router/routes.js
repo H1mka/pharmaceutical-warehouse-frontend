@@ -4,4 +4,5 @@ export const ROUTES = {
   REPAIR: "/repair",
   PHARMACIST: "/pharmacist",
   CUSTOMER: "/customer",
+  REGISTER: "/register",
 };
