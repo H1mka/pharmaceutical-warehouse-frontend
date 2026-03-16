@@ -6,6 +6,7 @@ import PharmacistView from "../views/PharmacistView";
 import RepairView from "../views/RepairView";
 import SettingsView from "../views/SettingsView";
 import MainLayout from "@/layouts/MainLayout";
+import Register from "../components/Register";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { path: ROUTES.PHARMACIST, element: <PharmacistView /> },
       { path: ROUTES.REPAIR, element: <RepairView /> },
       { path: ROUTES.SETTINGS, element: <SettingsView /> },
+      { path: ROUTES.REGISTER, element: <Register /> },
     ],
   },
 ]);

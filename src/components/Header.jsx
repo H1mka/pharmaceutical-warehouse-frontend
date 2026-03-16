@@ -1,3 +1,5 @@
+import { ROUTES } from "@/router";
+import { NavLink } from "react-router";
 const Header = () => {
   return (
     <header>
@@ -24,9 +26,21 @@ const Header = () => {
           </svg>
         </label>
         <div className="px-4">Pharma Warehouse</div>
+
+        {/* Правая часть */}
+        <div className="ml-auto flex gap-2">
+          <button className="btn btn-outline btn-sm text-white border-white hover:bg-white hover:text-blue-600">
+            Login
+          </button>
+          <NavLink to={ROUTES.REGISTER}>
+            <button className="btn btn-sm bg-white text-blue-600 hover:bg-gray-100">
+              Register
+            </button>
+          </NavLink>
+        </div>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
