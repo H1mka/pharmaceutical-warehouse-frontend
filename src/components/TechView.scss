@@ -1,0 +1,59 @@
+.repair-container {
+    padding: 24px;
+    min-height: 100vh;
+    background-color: var(--color-neutral);
+
+    .repair-title {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+
+    .section-title {
+        font-size: 20px;
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+
+    .status-list {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+
+        li {
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+    }
+
+    .control-panel {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 20px;
+
+        .control-button {
+            padding: 8px 14px;
+            border: none;
+            background-color: #2563eb;
+            color: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.2s;
+
+            &:hover {
+                background-color: #1d4ed8;
+            }
+        }
+    }
+
+    .logs-list {
+        list-style: none;
+        padding: 0;
+
+        li {
+            margin-bottom: 6px;
+            font-size: 14px;
+            color: #444;
+        }
+    }
+}
