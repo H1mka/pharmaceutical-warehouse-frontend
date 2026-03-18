@@ -3,7 +3,7 @@ import { ROUTES } from "@/router/routes";
 import MainView from "@/views/MainView";
 import CustomerView from "../views/CustomerView";
 import PharmacistView from "../views/PharmacistView";
-import RepairView from "../views/RepairView";
+import TechView from "../views/TechView";
 import SettingsView from "../views/SettingsView";
 import MainLayout from "@/layouts/MainLayout";
 import Register from "../components/Register";
@@ -15,7 +15,7 @@ const router = createBrowserRouter([
       { path: ROUTES.HOME, element: <MainView /> },
       { path: ROUTES.CUSTOMER, element: <CustomerView /> },
       { path: ROUTES.PHARMACIST, element: <PharmacistView /> },
-      { path: ROUTES.REPAIR, element: <RepairView /> },
+      { path: ROUTES.REPAIR, element: <TechView /> },
       { path: ROUTES.SETTINGS, element: <SettingsView /> },
       { path: ROUTES.REGISTER, element: <Register /> },
     ],
