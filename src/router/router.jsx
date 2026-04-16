@@ -1,12 +1,12 @@
-import { createBrowserRouter } from "react-router";
-import { ROUTES } from "@/router/routes";
-import MainView from "@/views/MainView";
-import CustomerView from "../views/CustomerView";
-import PharmacistView from "../views/PharmacistView";
-import TechView from "../views/TechView";
-import SettingsView from "../views/SettingsView";
-import MainLayout from "@/layouts/MainLayout";
-import Register from "../components/Register";
+import { createBrowserRouter } from 'react-router'
+import { ROUTES } from '@/router/routes'
+import MainView from '@/views/MainView'
+import CustomerView from '../views/CustomerView'
+import PharmacistView from '../views/PharmacistView'
+import TechView from '../views/TechView'
+import SettingsView from '../views/SettingsView'
+import MainLayout from '@/layouts/MainLayout'
+import Register from '../components/Register'
 
 const router = createBrowserRouter([
   {
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       { path: ROUTES.REGISTER, element: <Register /> },
     ],
   },
-]);
+])
 
-export { ROUTES };
-export default router;
+export { ROUTES }
+export default router

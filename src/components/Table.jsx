@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react'
 const Table = ({ data = [] }) => {
   const headers = Object.keys(data[0]).map((item) => {
-    return { title: item };
-  });
+    return { title: item }
+  })
   //     const [searchingMed, setSearchingMed] = useState("");
   //   let tableSearch = data.filter((item) => {
   //     if (searchingMed.length > 0)
@@ -31,31 +31,31 @@ const Table = ({ data = [] }) => {
         ))}
       </div> */}
 
-      <table className="table">
+      <table className='table'>
         <thead>
           {headers.map((head) => {
-            return <th>{head.title}</th>;
+            return <th>{head.title}</th>
           })}
         </thead>
         <tbody>
           {data.map((dataItem) => {
             return (
-              <tr className="hover:bg-base-300">
+              <tr className='hover:bg-base-300'>
                 {headers.map((headItem) => {
-                  return <td>{String(dataItem[headItem.title])}</td>;
+                  return <td>{String(dataItem[headItem.title])}</td>
                 })}
                 <td>
                   <label>
-                    <input type="checkbox" className="checkbox" />
+                    <input type='checkbox' className='checkbox' />
                   </label>
                 </td>
               </tr>
-            );
+            )
           })}
         </tbody>
       </table>
     </div>
-  );
-};
+  )
+}
 
-export default Table;
+export default Table
