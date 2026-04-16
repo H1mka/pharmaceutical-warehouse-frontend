@@ -1,6 +1,6 @@
 import { useState } from 'react'
 const Table = ({ data = [] }) => {
-  const headers = Object.keys(data[0]).map((item) => {
+  const headers = Object.keys(data[0] || {}).map((item) => {
     return { title: item }
   })
   //     const [searchingMed, setSearchingMed] = useState("");
@@ -33,16 +33,18 @@ const Table = ({ data = [] }) => {
 
       <table className='table'>
         <thead>
-          {headers.map((head) => {
-            return <th>{head.title}</th>
-          })}
+          <tr>
+            {headers.map((head, index) => {
+              return <th key={index}>{head.title}</th>
+            })}
+          </tr>
         </thead>
         <tbody>
           {data.map((dataItem) => {
             return (
-              <tr className='hover:bg-base-300'>
-                {headers.map((headItem) => {
-                  return <td>{String(dataItem[headItem.title])}</td>
+              <tr className='hover:bg-base-300' key={dataItem.id}>
+                {headers.map((headItem, index) => {
+                  return <td key={index}>{String(dataItem[headItem.title])}</td>
                 })}
                 <td>
                   <label>
