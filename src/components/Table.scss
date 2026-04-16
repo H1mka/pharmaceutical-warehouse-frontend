@@ -1,0 +1,10 @@
+.table {
+  td {
+    cursor: pointer;
+  }
+
+  .active-row {
+    background-color: var(--primary-grey);
+    transition: background-color 0.2s ease-in-out;
+  }
+}

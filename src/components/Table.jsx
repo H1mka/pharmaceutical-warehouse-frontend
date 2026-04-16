@@ -1,8 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import './Table.scss'
+
 const Table = ({ data = [] }) => {
   const headers = Object.keys(data[0] || {}).map((item) => {
     return { title: item }
   })
+
+  const [selected, setSelected] = useState([])
+
+  const isRowSelected = (value) => selected.some((item) => item.id === value.id)
+
+  const handleSelectRow = (value, msg) => {
+    if (isRowSelected(value)) {
+      setSelected(selected.filter((item) => item.id !== value.id))
+      return
+    }
+    setSelected([...selected, { ...value }])
+  }
+
+  useEffect(() => {
+    console.log('Selected Changed:', selected)
+  }, [selected])
+
   //     const [searchingMed, setSearchingMed] = useState("");
   //   let tableSearch = data.filter((item) => {
   //     if (searchingMed.length > 0)
@@ -42,13 +61,17 @@ const Table = ({ data = [] }) => {
         <tbody>
           {data.map((dataItem) => {
             return (
-              <tr className='hover:bg-base-300' key={dataItem.id}>
+              <tr
+                className={`hover:bg-base-300 ${isRowSelected(dataItem) && 'active-row'}`}
+                key={dataItem.id}
+                onClick={() => handleSelectRow(dataItem, 'tr')}
+              >
                 {headers.map((headItem, index) => {
                   return <td key={index}>{String(dataItem[headItem.title])}</td>
                 })}
                 <td>
                   <label>
-                    <input type='checkbox' className='checkbox' />
+                    <input type='checkbox' className='checkbox' checked={isRowSelected(dataItem)} readOnly />
                   </label>
                 </td>
               </tr>
