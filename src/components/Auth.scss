@@ -1,0 +1,33 @@
+.form-authorisation {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  background-color: #454648;
+  //align-items: center;
+  width: 420px;
+  flex-flow: column wrap;
+
+  .authFormInputs {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    gap: 15px;
+    background-color: (bg-gray-100);
+    flex-flow: column wrap;
+    width: 100%;
+    margin: 15px 0;
+  }
+  .Button {
+    cursor: pointer;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-color: rgb(0, 255, 217);
+    transition: all 0.5s ease;
+    &:hover {
+      background-color: #407ca7;
+      box-shadow: 0 4px 15px rgba(64, 124, 167, 0.4);
+    }
+  }
+}

@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import mocksMed from "../pages/mockMedications.json";
 
 const PharmacistView = () => {
   const [searchingMed, setSearchingMed] = useState("");
-  const [medications, setMedications] = useState([]);
+  const [medications] = useState(mocksMed);  // Убрали setMedications, так как он не используется
 
-  useEffect(() => {
-    setMedications(mocksMed);
-  }, []);
+  // useEffect(() => {
+  //   setMedications(mocksMed);
+  // }, []);
 
   let findedMed = medications.filter((item) => {
     if (searchingMed.length > 0)
@@ -50,7 +50,7 @@ const PharmacistView = () => {
           </tr>
         </thead>
         <tbody>
-          {mocksMed.map((med) => (
+          {medications.map((med) => (
             <tr key={med.id} className="hover:bg-base-300">
               <td>{med.name}</td>
               <td>{med.category}</td>

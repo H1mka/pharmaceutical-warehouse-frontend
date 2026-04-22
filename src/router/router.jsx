@@ -7,20 +7,51 @@ import RepairView from "../views/RepairView";
 import SettingsView from "../views/SettingsView";
 import MainLayout from "@/layouts/MainLayout";
 import Register from "../components/Register";
+import Authorisation from "../components/Authorisation";
+import ProtectedRoute from "../components/ProtectedRoute";
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
       { path: ROUTES.HOME, element: <MainView /> },
-      { path: ROUTES.CUSTOMER, element: <CustomerView /> },
-      { path: ROUTES.PHARMACIST, element: <PharmacistView /> },
-      { path: ROUTES.REPAIR, element: <RepairView /> },
-      { path: ROUTES.SETTINGS, element: <SettingsView /> },
+      {
+        path: ROUTES.CUSTOMER,
+        element: (
+          <ProtectedRoute allowedRoles={["customer"]}>
+            <CustomerView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.PHARMACIST,
+        element: (
+          <ProtectedRoute allowedRoles={["pharmacist"]}>
+            <PharmacistView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.REPAIR,
+        element: (
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <RepairView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.SETTINGS,
+        element: (
+          <ProtectedRoute allowedRoles={["admin"]}>
+            <SettingsView />
+          </ProtectedRoute>
+        ),
+      },
       { path: ROUTES.REGISTER, element: <Register /> },
+      { path: ROUTES.AUTHORISATION, element: <Authorisation /> },
     ],
   },
 ]);
 
-export { ROUTES };
+// export { ROUTES };
 export default router;

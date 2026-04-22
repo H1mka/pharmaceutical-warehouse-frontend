@@ -5,4 +5,5 @@ export const ROUTES = {
   PHARMACIST: "/pharmacist",
   CUSTOMER: "/customer",
   REGISTER: "/register",
+  AUTHORISATION: "/authorisation",
 };

@@ -1,4 +1,4 @@
-import { useState } from "react";
+// import { useState } from "react";
 const Table = ({ data = [] }) => {
   const headers = Object.keys(data[0]).map((item) => {
     return { title: item };
