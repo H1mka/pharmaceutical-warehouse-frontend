@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import './RepairView.scss'
+import '../components/TechView.scss'
 
-const RepairView = () => {
+const TechView = () => {
   const [systemStatus, setSystemStatus] = useState({
     robotArm: 'Online',
     sensors: 'Active',
@@ -79,4 +79,4 @@ const RepairView = () => {
   )
 }
 
-export default RepairView
+export default TechView

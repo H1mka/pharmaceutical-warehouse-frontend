@@ -1,24 +1,26 @@
-import { createBrowserRouter } from "react-router";
-import { ROUTES } from "@/router/routes";
-import MainView from "@/views/MainView";
-import CustomerView from "../views/CustomerView";
-import PharmacistView from "../views/PharmacistView";
-import RepairView from "../views/RepairView";
-import SettingsView from "../views/SettingsView";
-import MainLayout from "@/layouts/MainLayout";
-import Register from "../components/Register";
-import Authorisation from "../components/Authorisation";
-import ProtectedRoute from "../components/ProtectedRoute";
+import { createBrowserRouter } from 'react-router'
+import { ROUTES } from '@/router/routes'
+import MainView from '@/views/MainView'
+import CustomerView from '../views/CustomerView'
+import PharmacistView from '../views/PharmacistView'
+import RepairView from '../views/RepairView'
+import SettingsView from '../views/SettingsView'
+import MainLayout from '@/layouts/MainLayout'
+import Register from '../components/Register'
+import Authorisation from '../components/Authorisation'
+import ProtectedRoute from '../components/ProtectedRoute'
+import TechView from '../views/TechView'
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
       { path: ROUTES.HOME, element: <MainView /> },
+
       {
         path: ROUTES.CUSTOMER,
         element: (
-          <ProtectedRoute allowedRoles={["customer"]}>
+          <ProtectedRoute allowedRoles={['customer']}>
             <CustomerView />
           </ProtectedRoute>
         ),
@@ -26,7 +28,7 @@ const router = createBrowserRouter([
       {
         path: ROUTES.PHARMACIST,
         element: (
-          <ProtectedRoute allowedRoles={["pharmacist"]}>
+          <ProtectedRoute allowedRoles={['pharmacist']}>
             <PharmacistView />
           </ProtectedRoute>
         ),
@@ -34,7 +36,7 @@ const router = createBrowserRouter([
       {
         path: ROUTES.REPAIR,
         element: (
-          <ProtectedRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={['admin']}>
             <RepairView />
           </ProtectedRoute>
         ),
@@ -42,16 +44,17 @@ const router = createBrowserRouter([
       {
         path: ROUTES.SETTINGS,
         element: (
-          <ProtectedRoute allowedRoles={["admin"]}>
+          <ProtectedRoute allowedRoles={['admin']}>
             <SettingsView />
           </ProtectedRoute>
         ),
       },
+
       { path: ROUTES.REGISTER, element: <Register /> },
       { path: ROUTES.AUTHORISATION, element: <Authorisation /> },
     ],
   },
-]);
+])
 
 // export { ROUTES };
-export default router;
+export default router

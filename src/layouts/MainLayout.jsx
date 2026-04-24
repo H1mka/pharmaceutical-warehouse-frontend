@@ -4,13 +4,13 @@ import Drawer from '@/components/Drawer'
 
 const MainLayout = () => {
   return (
-    <div className="drawer lg:drawer-open">
-      <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
+    <div className='drawer lg:drawer-open'>
+      <input id='my-drawer-4' type='checkbox' className='drawer-toggle' />
 
-      <div className="drawer-content">
+      <div className='drawer-content'>
         <Header />
 
-        <main className="p-4">
+        <main className='p-4'>
           <Outlet />
         </main>
       </div>
