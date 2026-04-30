@@ -6,8 +6,10 @@ const useMedicines = () => {
   const [pagination, setPagination] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
-  const fetchAllMedicines = async (params) => {
+  const fetchAllMedicines = async (params = {}) => {
     try {
+      if (typeof params !== 'object') params = {}
+
       setIsLoading(true)
 
       const response = await medicinesApi.getAll(params)
