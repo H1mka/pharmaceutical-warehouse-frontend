@@ -1,55 +1,31 @@
 import { useEffect, useState } from 'react'
+import { useMedicineTableContext } from './MedicineTableProvider'
+
 import './Table.scss'
 
-const Table = ({ className = '', data = [] }) => {
-  const headers = Object.keys(data[0] || {}).map((item) => {
-    return { title: item }
+const capitalizeLetter = (value = '') => {
+  return value.charAt(0).toUpperCase() + value.slice(1)
+}
+
+const formatHeaderColumnName = (column = '') => {
+  const columnSplit = column.split(/[-_]/)
+  columnSplit[0] = capitalizeLetter(columnSplit[0])
+
+  return columnSplit.join(' ')
+}
+
+const Table = ({ className = '', data = [], externalHeaders }) => {
+  const { medicines, selected, setSelected, isRowSelected, toggleSelectRow } = useMedicineTableContext()
+
+  const internalHeaders = Object.keys(data[0] || {}).map((item) => {
+    return { title: formatHeaderColumnName(item), value: item }
   })
 
-  const [selected, setSelected] = useState([])
+  // show externalHeaders when it's given
+  const headers = Array.isArray(externalHeaders) ? externalHeaders : internalHeaders
 
-  const isRowSelected = (value) => selected.some((item) => item.id === value.id)
-
-  const handleSelectRow = (value, msg) => {
-    if (isRowSelected(value)) {
-      setSelected(selected.filter((item) => item.id !== value.id))
-      return
-    }
-    setSelected([...selected, { ...value }])
-  }
-
-  useEffect(() => {
-    console.log('Selected Changed:', selected)
-  }, [selected])
-
-  //     const [searchingMed, setSearchingMed] = useState("");
-  //   let tableSearch = data.filter((item) => {
-  //     if (searchingMed.length > 0)
-  //       return item.name.toLowerCase().includes(searchingMed.toLowerCase());
-  //   });
   return (
     <div>
-      {/* <input
-        className="input validator outline-none border-[#ecf9ff99]"
-        type="search"
-        id="search"
-        placeholder="Search"
-        value={searchingMed}
-        onChange={(e) => setSearchingMed(e.target.value)}
-      />
-      <div>
-        {" "}
-        <h2>Are you looking for this?</h2>
-        {tableSearch.map((item) => (
-          <div key={item.id}>
-            <ul>
-              <li>{item.name}</li>
-              <li>{item.category}</li>
-            </ul>
-          </div>
-        ))}
-      </div> */}
-
       <table className={`table ${className}`}>
         <thead>
           <tr>
@@ -59,15 +35,15 @@ const Table = ({ className = '', data = [] }) => {
           </tr>
         </thead>
         <tbody>
-          {data.map((dataItem) => {
+          {medicines.map((dataItem) => {
             return (
               <tr
                 className={`hover:bg-base-300 ${isRowSelected(dataItem) && 'active-row'}`}
                 key={dataItem.id}
-                onClick={() => handleSelectRow(dataItem, 'tr')}
+                onClick={() => toggleSelectRow(dataItem, 'tr')}
               >
                 {headers.map((headItem, index) => {
-                  return <td key={index}>{String(dataItem[headItem.title])}</td>
+                  return <td key={index}>{String(dataItem[headItem.value])}</td>
                 })}
                 <td>
                   <label>

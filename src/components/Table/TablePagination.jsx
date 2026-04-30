@@ -1,4 +1,7 @@
-const TablePagination = ({ pagination = {}, fetchData = Function }) => {
+import { useMedicineTableContext } from './MedicineTableProvider'
+
+const TablePagination = ({}) => {
+  const { fetchAllMedicines, pagination } = useMedicineTableContext()
   const { page: currPage, total_pages = 0 } = pagination
 
   // Check if total pages is number, if not, set one page by default
@@ -7,7 +10,7 @@ const TablePagination = ({ pagination = {}, fetchData = Function }) => {
   const toNextPage = async (nextPage) => {
     if (typeof nextPage !== 'number') return
 
-    await fetchData({ page: nextPage })
+    await fetchAllMedicines({ page: nextPage })
   }
 
   return (

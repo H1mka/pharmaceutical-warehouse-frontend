@@ -26,6 +26,7 @@ const useMedicines = () => {
   }
 
   useEffect(() => {
+    console.log('Mounted')
     fetchAllMedicines()
   }, [])
 

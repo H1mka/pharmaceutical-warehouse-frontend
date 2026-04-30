@@ -1,12 +1,14 @@
 import { useState } from 'react'
+import { useMedicineTableContext } from './MedicineTableProvider'
 
-const TableNameSearch = ({ className = '', fetchData = Function }) => {
+const TableNameSearch = ({ className = '' }) => {
   const [search, setSearch] = useState('')
+  const { fetchAllMedicines } = useMedicineTableContext()
 
   const submitSearch = (searchValue = search) => {
-    if (typeof fetchData !== 'function') return ''
+    if (typeof fetchAllMedicines !== 'function') return ''
 
-    fetchData({ name: searchValue })
+    fetchAllMedicines({ name: searchValue })
   }
 
   const handleReset = () => {
@@ -23,7 +25,7 @@ const TableNameSearch = ({ className = '', fetchData = Function }) => {
         value={search}
         onChange={(e) => setSearch(e.target.value)}
       />
-      <button className='btn bg-(--primary-blue)' onClick={submitSearch}>
+      <button className='btn bg-(--primary-blue)' onClick={() => submitSearch()}>
         Search
       </button>
       <button className='btn bg-(--primary-blue)' onClick={handleReset}>
