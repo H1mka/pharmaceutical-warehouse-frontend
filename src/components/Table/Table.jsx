@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './Table.scss'
 
-const Table = ({ data = [] }) => {
+const Table = ({ className = '', data = [] }) => {
   const headers = Object.keys(data[0] || {}).map((item) => {
     return { title: item }
   })
@@ -50,7 +50,7 @@ const Table = ({ data = [] }) => {
         ))}
       </div> */}
 
-      <table className='table'>
+      <table className={`table ${className}`}>
         <thead>
           <tr>
             {headers.map((head, index) => {
