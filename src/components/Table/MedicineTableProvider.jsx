@@ -3,23 +3,29 @@ import { useMedicines } from '../../hooks'
 
 const MedicineTableContext = createContext()
 
-export const MedicineTableProvider = ({ children }) => {
-  const [selected, setSelected] = useState([])
+export const MedicineTableProvider = ({ children, isSingleSelect = false }) => {
+  const [selected, setSelected] = useState(isSingleSelect ? null : [])
 
   const medicineData = useMedicines()
 
   /**
    * Select rows logic
    */
-  const isRowSelected = (value) => selected.some((item) => item.id === value.id)
-  const clearSelected = () => setSelected([])
-  const toggleSelectRow = (value, msg) => {
-    if (isRowSelected(value)) {
-      setSelected(selected.filter((item) => item.id !== value.id))
-      return
-    }
+  const isRowSelected = (value) => {
+    if (Array.isArray(selected)) return selected.some((item) => item.id === value.id)
+    else return selected?.id === value.id
+  }
 
-    setSelected([...selected, { ...value }])
+  const clearSelected = () => setSelected(isSingleSelect ? null : [])
+
+  const toggleSelectRow = (value) => {
+    if (isSingleSelect) {
+      setSelected((prev) => {
+        return prev?.id === value.id ? null : value
+      })
+    } else {
+      setSelected(isRowSelected(value) ? selected.filter((item) => item.id !== value.id) : [...selected, { ...value }])
+    }
   }
 
   const providerValue = {

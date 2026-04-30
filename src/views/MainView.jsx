@@ -18,7 +18,7 @@ const PharmacistView = () => {
 
   return (
     <div>
-      <MedicineTableProvider>
+      <MedicineTableProvider isSingleSelect>
         <Loader />
 
         <TableNameSearch className={'mb-4'} />
