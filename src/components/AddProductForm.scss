@@ -1,0 +1,73 @@
+.form-container {
+  background: #2a313a; // как card
+  padding: 24px;
+  border-radius: 16px;
+  width: 340px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  color: #e2e8f0;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.form-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+  color: #f1f5f9;
+}
+
+.form-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #3a424d; // мягкий контраст
+  background: #1d232a; // фон как основной
+  color: #f8fafc;
+  transition: 0.2s;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #3b82f6; // синий акцент (вместо зелёного)
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.4);
+}
+
+.form-input::placeholder {
+  color: #9aa4b2;
+}
+
+.form-button {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  border: none;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.form-button.enabled {
+  background: linear-gradient(135deg, #3b82f6, #2563eb); // как кнопки
+  cursor: pointer;
+  color: white;
+}
+
+.form-button.enabled:hover {
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+}
+
+.form-button.disabled {
+  background: #3a424d;
+  color: #9aa4b2;
+  cursor: not-allowed;
+}
+
+.form-button.cancel {
+  background: #3a424d;
+  color: #e2e8f0;
+}
+
+.form-button.cancel:hover {
+  background: #4b5563;
+}
+
+.sku-field {
+  opacity: 0.6;
+}

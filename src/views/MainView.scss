@@ -1,0 +1,51 @@
+.main-container {
+  padding: 30px;
+  background: #1d232a; // основной фон
+  min-height: 100vh;
+  color: #e2e8f0;
+}
+
+.main-header {
+  margin-bottom: 25px;
+}
+
+.main-title {
+  margin: 0;
+  color: #f8fafc;
+}
+
+.main-subtitle {
+  color: #9aa4b2; // чуть мягче
+  margin-top: 5px;
+}
+
+.main-grid {
+  display: flex;
+  justify-content: center;
+  //display: grid;
+  // grid-template-columns: 1fr 1fr;
+  //gap: 20px;
+}
+
+.card {
+  background: #2a313a; // 🔥 светлее фона → теперь видно
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  background: #323a45; // лёгкий hover
+}
+
+.card-title {
+  margin-bottom: 10px;
+  color: #f1f5f9;
+}
+
+.card-subtitle {
+  font-size: 14px;
+  color: #9aa4b2;
+}
