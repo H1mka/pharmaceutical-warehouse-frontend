@@ -27,7 +27,9 @@ const router = createBrowserRouter([
         path: ROUTES.PHARMACIST,
         element: (
           <ProtectedRoute allowedRoles={['pharmacist']}>
-            <PharmacistView />
+            <MedicineTableProvider>
+              <PharmacistView />
+            </MedicineTableProvider>
           </ProtectedRoute>
         ),
       },

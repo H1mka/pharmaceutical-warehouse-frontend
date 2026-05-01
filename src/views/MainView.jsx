@@ -2,7 +2,7 @@ import Table from '../components/Table/Table'
 import TablePagination from '../components/Table/TablePagination'
 import TableNameSearch from '../components/Table/TableNameSearch'
 import Loader from '../components/Loader'
-import { useMedicineTableContext } from '../components/Table/MedicineTableProvider'
+import { useMedicineTableContext, MedicineTableProvider } from '../components/Table/MedicineTableProvider'
 
 import { useMedicines } from '../hooks'
 

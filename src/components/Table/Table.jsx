@@ -14,10 +14,10 @@ const formatHeaderColumnName = (column = '') => {
   return columnSplit.join(' ')
 }
 
-const Table = ({ className = '', data = [], externalHeaders }) => {
-  const { medicines, selected, setSelected, isRowSelected, toggleSelectRow } = useMedicineTableContext()
+const Table = ({ className = '', externalHeaders }) => {
+  const { medicines = [], selected, setSelected, isRowSelected, toggleSelectRow } = useMedicineTableContext()
 
-  const internalHeaders = Object.keys(data[0] || {}).map((item) => {
+  const internalHeaders = Object.keys(medicines[0] || {}).map((item) => {
     return { title: formatHeaderColumnName(item), value: item }
   })
 
