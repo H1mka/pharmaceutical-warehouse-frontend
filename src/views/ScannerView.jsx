@@ -38,7 +38,7 @@ const ScannerView = ({ onScan }) => {
     }
   }, [])
 
-  return <div id='reader' style={{ width: 300 }} />
+  return <div className='border-1 border-transparent rounded-md overflow-hidden' id='reader' style={{ width: 300 }} />
 }
 
 export default ScannerView

@@ -1,34 +1,25 @@
-import Table from '../components/Table/Table'
-import TablePagination from '../components/Table/TablePagination'
-import TableNameSearch from '../components/Table/TableNameSearch'
-import Loader from '../components/Loader'
-import { useMedicineTableContext, MedicineTableProvider } from '../components/Table/MedicineTableProvider'
+import QRScanner from '../components/QRScanner'
 
-import { useMedicines } from '../hooks'
+import './MainView.scss'
 
-const PharmacistView = () => {
-  const headers = [
-    { title: 'Sku', value: 'sku' },
-    { title: 'Name', value: 'name' },
-    { title: 'Manufacturer', value: 'manufacturer' },
-    { title: 'Form', value: 'form' },
-    { title: 'Package size', value: 'package_size' },
-    { title: 'Expiration date', value: 'expiration_date' },
-  ]
-
-  const { isLoading } = useMedicineTableContext()
-
+const MainView = () => {
   return (
-    <div>
-      <Loader isLoading={isLoading} />
+    <div className='main-view-wrapper'>
+      <div className='main-header'>
+        <h1 className='main-title'>Dashboard</h1>
+        <p className='main-subtitle'>Manage your warehouse and scan medications</p>
+      </div>
 
-      <TableNameSearch className={'mb-4'} />
+      <div className='card-actions-wrapper'>
+        <div className='scanner-card'>
+          <h3 className='scanner-card-title'>📦 QR Scanner</h3>
+          <p className='scanner-card-subtitle mb-2'>Scan medication QR codes to find or add products</p>
 
-      <Table className={'mb-4'} externalHeaders={headers} />
-
-      <TablePagination />
+          <QRScanner />
+        </div>
+      </div>
     </div>
   )
 }
 
-export default PharmacistView
+export default MainView
