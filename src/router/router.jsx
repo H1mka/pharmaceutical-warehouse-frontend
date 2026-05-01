@@ -9,12 +9,20 @@ import Register from '../components/Register'
 import Authorisation from '../components/Authorisation'
 import ProtectedRoute from '../components/ProtectedRoute'
 import TechView from '../views/TechView'
+import { MedicineTableProvider } from '../components/Table/MedicineTableProvider'
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: ROUTES.HOME, element: <MainView /> },
+      {
+        path: ROUTES.HOME,
+        element: (
+          <MedicineTableProvider isSingleSelect>
+            <MainView />
+          </MedicineTableProvider>
+        ),
+      },
       {
         path: ROUTES.PHARMACIST,
         element: (

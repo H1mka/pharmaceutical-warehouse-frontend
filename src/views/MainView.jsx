@@ -2,7 +2,7 @@ import Table from '../components/Table/Table'
 import TablePagination from '../components/Table/TablePagination'
 import TableNameSearch from '../components/Table/TableNameSearch'
 import Loader from '../components/Loader'
-import { MedicineTableProvider } from '../components/Table/MedicineTableProvider'
+import { useMedicineTableContext } from '../components/Table/MedicineTableProvider'
 
 import { useMedicines } from '../hooks'
 
@@ -16,17 +16,17 @@ const PharmacistView = () => {
     { title: 'Expiration date', value: 'expiration_date' },
   ]
 
+  const { isLoading } = useMedicineTableContext()
+
   return (
     <div>
-      <MedicineTableProvider isSingleSelect>
-        <Loader />
+      <Loader isLoading={isLoading} />
 
-        <TableNameSearch className={'mb-4'} />
+      <TableNameSearch className={'mb-4'} />
 
-        <Table className={'mb-4'} externalHeaders={headers} />
+      <Table className={'mb-4'} externalHeaders={headers} />
 
-        <TablePagination />
-      </MedicineTableProvider>
+      <TablePagination />
     </div>
   )
 }

@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react'
+import React, { createContext, useState, useContext, useEffect, useMemo } from 'react'
 import { useMedicines } from '../../hooks'
 
 const MedicineTableContext = createContext()
@@ -12,30 +12,40 @@ export const MedicineTableProvider = ({ children, isSingleSelect = false }) => {
    * Select rows logic
    */
   const isRowSelected = (value) => {
-    if (Array.isArray(selected)) return selected.some((item) => item.id === value.id)
-    else return selected?.id === value.id
+    return isSingleSelect ? selected?.id === value.id : selected.some((item) => item.id === value.id)
   }
 
   const clearSelected = () => setSelected(isSingleSelect ? null : [])
 
   const toggleSelectRow = (value) => {
-    if (isSingleSelect) {
-      setSelected((prev) => {
+    if (!value?.id) return
+
+    setSelected((prev) => {
+      if (isSingleSelect) {
         return prev?.id === value.id ? null : value
-      })
-    } else {
-      setSelected(isRowSelected(value) ? selected.filter((item) => item.id !== value.id) : [...selected, { ...value }])
-    }
+      }
+
+      const isAlreadySelected = isRowSelected(value)
+      return isAlreadySelected ? selected.filter((item) => item.id !== value.id) : [...selected, { ...value }]
+    })
   }
 
-  const providerValue = {
-    ...medicineData,
-    selected,
-    setSelected,
-    toggleSelectRow,
-    isRowSelected,
-    clearSelected,
-  }
+  useEffect(() => {
+    console.log(selected)
+  }, [selected])
+
+  const providerValue = useMemo(
+    () => ({
+      ...medicineData,
+      selected,
+      setSelected,
+      toggleSelectRow,
+      isRowSelected,
+      clearSelected,
+      isSingleSelect,
+    }),
+    [medicineData, selected, toggleSelectRow, isRowSelected, clearSelected, isSingleSelect]
+  )
 
   return <MedicineTableContext.Provider value={providerValue}>{children}</MedicineTableContext.Provider>
 }
