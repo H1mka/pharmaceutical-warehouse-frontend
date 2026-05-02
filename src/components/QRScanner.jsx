@@ -55,9 +55,7 @@ const QRScanner = () => {
 
   return (
     <div className='scanner-container'>
-      <div className='scanner-card'>
-        <div className='title'>📦 QR Scanner</div>
-
+      <div>
         {mode === 'idle' && (
           <button onClick={() => setMode('scanning')} className='control-button'>
             Start scanning

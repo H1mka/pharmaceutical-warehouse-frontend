@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router'
 import { ROUTES } from '@/router/routes'
 import MainView from '@/views/MainView'
-import CustomerView from '../views/CustomerView'
 import PharmacistView from '../views/PharmacistView'
 import RepairView from '../views/RepairView'
 import SettingsView from '../views/SettingsView'
@@ -10,26 +9,23 @@ import Register from '../components/Register'
 import Authorisation from '../components/Authorisation'
 import ProtectedRoute from '../components/ProtectedRoute'
 import TechView from '../views/TechView'
+import { MedicineTableProvider } from '../providers/MedicineTableProvider'
 
 const router = createBrowserRouter([
   {
     element: <MainLayout />,
     children: [
-      { path: ROUTES.HOME, element: <MainView /> },
-
       {
-        path: ROUTES.CUSTOMER,
-        element: (
-          <ProtectedRoute allowedRoles={['customer']}>
-            <CustomerView />
-          </ProtectedRoute>
-        ),
+        path: ROUTES.HOME,
+        element: <MainView />,
       },
       {
         path: ROUTES.PHARMACIST,
         element: (
           <ProtectedRoute allowedRoles={['pharmacist']}>
-            <PharmacistView />
+            <MedicineTableProvider isSingleSelect>
+              <PharmacistView />
+            </MedicineTableProvider>
           </ProtectedRoute>
         ),
       },

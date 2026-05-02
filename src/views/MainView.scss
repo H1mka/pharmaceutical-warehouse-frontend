@@ -19,33 +19,36 @@
   margin-top: 5px;
 }
 
-.main-grid {
+.main-view-wrapper {
+  min-height: calc(100vh - 64px - 32px);
+}
+
+.card-actions-wrapper {
   display: flex;
   justify-content: center;
-  //display: grid;
-  // grid-template-columns: 1fr 1fr;
-  //gap: 20px;
-}
+  align-items: center;
+  min-height: inherit;
 
-.card {
-  background: #2a313a; // 🔥 светлее фона → теперь видно
-  padding: 20px;
-  border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
-  transition: 0.2s;
-}
+  .scanner-card {
+    background: #2a313a; // 🔥 светлее фона → теперь видно
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: 0.2s;
 
-.card:hover {
-  transform: translateY(-3px);
-  background: #323a45; // лёгкий hover
-}
+    &:hover {
+      transform: translateY(-3px);
+      background: #323a45; // лёгкий hover
+    }
+  }
 
-.card-title {
-  margin-bottom: 10px;
-  color: #f1f5f9;
-}
+  .scanner-card-title {
+    margin-bottom: 10px;
+    color: #f1f5f9;
+  }
 
-.card-subtitle {
-  font-size: 14px;
-  color: #9aa4b2;
+  .scanner-card-subtitle {
+    font-size: 14px;
+    color: #9aa4b2;
+  }
 }
