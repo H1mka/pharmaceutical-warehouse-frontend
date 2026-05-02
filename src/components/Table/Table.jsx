@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMedicineTableContext } from './MedicineTableProvider'
+import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
 
 import './Table.scss'
 

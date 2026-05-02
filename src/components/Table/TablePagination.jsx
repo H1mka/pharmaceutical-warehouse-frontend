@@ -1,4 +1,4 @@
-import { useMedicineTableContext } from './MedicineTableProvider'
+import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
 
 const TablePagination = ({}) => {
   const { fetchAllMedicines, pagination } = useMedicineTableContext()

@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect, useMemo } from 'react'
-import { useMedicines } from '../../hooks'
+import { useMedicines } from '../hooks'
 
 const MedicineTableContext = createContext()
 

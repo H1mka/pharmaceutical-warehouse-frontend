@@ -9,7 +9,7 @@ import Register from '../components/Register'
 import Authorisation from '../components/Authorisation'
 import ProtectedRoute from '../components/ProtectedRoute'
 import TechView from '../views/TechView'
-import { MedicineTableProvider } from '../components/Table/MedicineTableProvider'
+import { MedicineTableProvider } from '../providers/MedicineTableProvider'
 
 const router = createBrowserRouter([
   {

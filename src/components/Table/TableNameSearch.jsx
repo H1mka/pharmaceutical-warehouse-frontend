@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useMedicineTableContext } from './MedicineTableProvider'
+import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
 
 const TableNameSearch = ({ className = '' }) => {
   const [search, setSearch] = useState('')
