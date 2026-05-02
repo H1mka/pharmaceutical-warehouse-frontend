@@ -17,17 +17,13 @@ const router = createBrowserRouter([
     children: [
       {
         path: ROUTES.HOME,
-        element: (
-          <MedicineTableProvider isSingleSelect>
-            <MainView />
-          </MedicineTableProvider>
-        ),
+        element: <MainView />,
       },
       {
         path: ROUTES.PHARMACIST,
         element: (
           <ProtectedRoute allowedRoles={['pharmacist']}>
-            <MedicineTableProvider>
+            <MedicineTableProvider isSingleSelect>
               <PharmacistView />
             </MedicineTableProvider>
           </ProtectedRoute>
