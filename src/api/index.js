@@ -1,3 +1,4 @@
+import analyticsApi from './analytics.api'
 import medicinesApi from './medicines.api'
 
-export { medicinesApi }
+export { analyticsApi, medicinesApi }

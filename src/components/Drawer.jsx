@@ -34,7 +34,7 @@ const Drawer = () => {
             </NavLink>
           </li>
 
-          {/* Показывать Settings только для admin */}
+          {/* Show Settings only for admin */}
           {user && user.role === 'admin' && (
             <li>
               <NavLink to={ROUTES.SETTINGS} className='is-drawer-close:hidden'>
@@ -47,7 +47,7 @@ const Drawer = () => {
             </li>
           )}
 
-          {/* Показывать Repair только для admin */}
+          {/* Show Repair only for admin */}
           {user && user.role === 'admin' && (
             <li>
               <NavLink to={ROUTES.REPAIR} className='is-drawer-close:hidden'>
@@ -59,7 +59,7 @@ const Drawer = () => {
             </li>
           )}
 
-          {/* Показывать Pharmacist только для pharmacist */}
+          {/* Show Pharmacist only for pharmacist */}
           {user && user.role === 'pharmacist' && (
             <li>
               <NavLink to={ROUTES.PHARMACIST} className='is-drawer-close:hidden'>
@@ -71,7 +71,16 @@ const Drawer = () => {
             </li>
           )}
 
-          {/* Показывать Customer только для customer */}
+          {user && ['admin', 'pharmacist'].includes(user.role) && (
+            <li>
+              <NavLink to={ROUTES.ANALYTICS} className='is-drawer-close:hidden'>
+                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Analytics'>
+                  Analytics
+                </button>
+              </NavLink>
+            </li>
+          )}
+
           {user && user.role === 'customer' && (
             <li>
               <NavLink to={ROUTES.CUSTOMER} className='is-drawer-close:hidden'>
