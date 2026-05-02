@@ -3,6 +3,7 @@ export const ROUTES = {
   SETTINGS: '/settings',
   REPAIR: '/repair',
   PHARMACIST: '/pharmacist',
+  ANALYTICS: '/analytics',
   REGISTER: '/register',
   AUTHORISATION: '/authorisation',
 }
