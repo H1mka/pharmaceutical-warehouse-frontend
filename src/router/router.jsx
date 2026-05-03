@@ -10,6 +10,7 @@ import Authorisation from '../components/Authorisation'
 import ProtectedRoute from '../components/ProtectedRoute'
 import TechView from '../views/TechView'
 import WarehouseLoadAnalyticsView from '../views/WarehouseLoadAnalyticsView'
+import MedicinePopularityView from '../views/MedicinePopularityView'
 import { MedicineTableProvider } from '../providers/MedicineTableProvider'
 
 const router = createBrowserRouter([
@@ -31,10 +32,18 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: ROUTES.ANALYTICS,
+        path: ROUTES.WAREHOUSE_LOAD,
         element: (
           <ProtectedRoute allowedRoles={['admin', 'pharmacist']}>
             <WarehouseLoadAnalyticsView />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: ROUTES.MEDICINE_POPULARITY,
+        element: (
+          <ProtectedRoute allowedRoles={['admin', 'pharmacist']}>
+            <MedicinePopularityView />
           </ProtectedRoute>
         ),
       },

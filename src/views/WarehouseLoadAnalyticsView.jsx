@@ -1,12 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import {
-  BarElement,
-  CategoryScale,
-  Chart as ChartJS,
-  Legend,
-  LinearScale,
-  Tooltip,
-} from 'chart.js'
+import { BarElement, CategoryScale, Chart as ChartJS, Legend, LinearScale, Tooltip } from 'chart.js'
 import { Bar } from 'react-chartjs-2'
 import { analyticsApi } from '../api'
 
@@ -222,7 +215,9 @@ const WarehouseLoadAnalyticsView = () => {
       </div>
 
       <div className='rounded-md border border-slate-700 bg-slate-900/60 p-4'>
-        {error && <div className='mb-4 rounded-md border border-red-500/40 bg-red-950/40 p-3 text-sm text-red-200'>{error}</div>}
+        {error && (
+          <div className='mb-4 rounded-md border border-red-500/40 bg-red-950/40 p-3 text-sm text-red-200'>{error}</div>
+        )}
 
         <div className='h-[460px]'>
           {isLoading ? (

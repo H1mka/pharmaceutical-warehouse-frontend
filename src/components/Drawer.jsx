@@ -73,9 +73,19 @@ const Drawer = () => {
 
           {user && ['admin', 'pharmacist'].includes(user.role) && (
             <li>
-              <NavLink to={ROUTES.ANALYTICS} className='is-drawer-close:hidden'>
-                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Analytics'>
-                  Analytics
+              <NavLink to={ROUTES.WAREHOUSE_LOAD} className='is-drawer-close:hidden'>
+                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Warehouse load'>
+                  Warehouse load
+                </button>
+              </NavLink>
+            </li>
+          )}
+
+          {user && ['admin', 'pharmacist'].includes(user.role) && (
+            <li>
+              <NavLink to={ROUTES.MEDICINE_POPULARITY} className='is-drawer-close:hidden'>
+                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Top Sales'>
+                  Top Sales
                 </button>
               </NavLink>
             </li>
