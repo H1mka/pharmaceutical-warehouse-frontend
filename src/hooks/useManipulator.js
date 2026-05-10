@@ -27,7 +27,7 @@ const useManipulator = () => {
     fetchAllLogs()
   }, [])
 
-  return { fetchAllLogs, logs, pagination, isLoading }
+  return { fetchAllLogs, logs, setLogs, pagination, isLoading }
 }
 
 export default useManipulator
