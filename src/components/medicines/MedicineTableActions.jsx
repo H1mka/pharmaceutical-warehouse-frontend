@@ -1,4 +1,4 @@
-import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
+import { useTableContext } from '../../providers/TableProvider'
 
 const normalizeSelected = (selected) => {
   if (!selected) return []
@@ -7,7 +7,7 @@ const normalizeSelected = (selected) => {
 }
 
 const MedicineTableActions = ({ className = '', onDispense, onReceive, onDelete, onEdit }) => {
-  const { selected } = useMedicineTableContext()
+  const { selected } = useTableContext()
 
   const selectedItems = normalizeSelected(selected)
   const selectedItem = selectedItems[0]

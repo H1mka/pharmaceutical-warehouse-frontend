@@ -11,7 +11,7 @@ const ControlPanel = () => {
     manipulatorLoc: 'Unknown',
   })
 
-  const { fetchAllLogs, logs, pagination, isLoading } = useManipulator()
+  const { fetchAllLogs, data: logs, pagination, isLoading } = useManipulator()
 
   useEffect(() => {
     manipulatorApi
@@ -55,7 +55,14 @@ const ControlPanel = () => {
     Qty: log.product_quantity || '-',
   }))
 
-  console.log('Tabledata', tableData)
+  const tableHeaders = [
+    { title: 'Id', value: 'id' },
+    { title: 'Time', value: 'Time' },
+    { title: 'Status', value: 'Status' },
+    { title: 'Location', value: 'Loc ID' },
+    { title: 'Product', value: 'Prod ID' },
+    { title: 'Qty', value: 'Qty' },
+  ]
 
   return (
     <div className='control-panel-container'>
@@ -83,7 +90,11 @@ const ControlPanel = () => {
         <p>Loading logs...</p>
       ) : (
         <>
-          {tableData.length > 0 ? <Table data={tableData} /> : <p>No logs found.</p>}
+          {tableData.length > 0 ? (
+            <Table externalData={tableData} externalHeaders={tableHeaders} />
+          ) : (
+            <p>No logs found.</p>
+          )}
           {pagination.total_pages > 1 && <TablePagination pagination={pagination} fetchData={fetchAllLogs} />}
         </>
       )}

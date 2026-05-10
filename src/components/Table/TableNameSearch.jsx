@@ -1,14 +1,14 @@
 import { useState } from 'react'
-import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
+import { useTableContext } from '../../providers/TableProvider'
 
 const TableNameSearch = ({ className = '' }) => {
   const [search, setSearch] = useState('')
-  const { fetchAllMedicines } = useMedicineTableContext()
+  const { fetchAllData } = useTableContext()
 
   const submitSearch = (searchValue = search) => {
-    if (typeof fetchAllMedicines !== 'function') return ''
+    if (typeof fetchAllData !== 'function') return ''
 
-    fetchAllMedicines({ name: searchValue })
+    fetchAllData({ name: searchValue })
   }
 
   const handleReset = () => {

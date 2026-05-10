@@ -10,7 +10,8 @@ import Authorisation from '../components/Authorisation'
 import ProtectedRoute from '../components/ProtectedRoute'
 import WarehouseLoadAnalyticsView from '../views/WarehouseLoadAnalyticsView'
 import MedicinePopularityView from '../views/MedicinePopularityView'
-import { MedicineTableProvider } from '../providers/MedicineTableProvider'
+import { TableProvider } from '../providers/TableProvider'
+import { useMedicines, useManipulator } from '../hooks'
 
 const router = createBrowserRouter([
   {
@@ -24,9 +25,9 @@ const router = createBrowserRouter([
         path: ROUTES.PHARMACIST,
         element: (
           <ProtectedRoute allowedRoles={['pharmacist']}>
-            <MedicineTableProvider isSingleSelect>
+            <TableProvider isSingleSelect dataHook={useMedicines}>
               <PharmacistView />
-            </MedicineTableProvider>
+            </TableProvider>
           </ProtectedRoute>
         ),
       },
@@ -50,7 +51,9 @@ const router = createBrowserRouter([
         path: ROUTES.CONTROL_PANEL,
         element: (
           <ProtectedRoute allowedRoles={['admin']}>
-            <ControlPanel />
+            <TableProvider isSingleSelect dataHook={useManipulator}>
+              <ControlPanel />
+            </TableProvider>
           </ProtectedRoute>
         ),
       },

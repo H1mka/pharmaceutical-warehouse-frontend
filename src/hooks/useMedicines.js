@@ -50,7 +50,7 @@ const useMedicines = () => {
     fetchAllMedicines()
   }, [])
 
-  return { fetchAllMedicines, dispenseMedicine, medicines, pagination, isLoading }
+  return { fetchAllData: fetchAllMedicines, dispenseMedicine, data: medicines, pagination, isLoading }
 }
 
 export default useMedicines
