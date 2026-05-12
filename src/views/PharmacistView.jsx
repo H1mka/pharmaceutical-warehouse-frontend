@@ -7,10 +7,10 @@ import QRScanner from '../components/QRScanner'
 import MedicineTableActions from '../components/medicines/MedicineTableActions'
 import DispenseProductModal from '../components/medicines/DispenseProductModal'
 
-import { useMedicineTableContext } from '../providers/MedicineTableProvider'
+import { useTableContext } from '../providers/TableProvider'
 
 const PharmacistView = () => {
-  const { isLoading, dispenseMedicine, clearSelected } = useMedicineTableContext()
+  const { isLoading, dispenseMedicine, clearSelected } = useTableContext()
   const [dispenseMedicineItem, setDispenseMedicineItem] = useState(null)
 
   const handleDispenseSubmit = async (data) => {

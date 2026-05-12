@@ -1,7 +1,7 @@
 export const ROUTES = {
   HOME: '/',
   SETTINGS: '/settings',
-  REPAIR: '/repair',
+  CONTROL_PANEL: '/control-panel',
   PHARMACIST: '/pharmacist',
   WAREHOUSE_LOAD: '/warehouse-load',
   MEDICINE_POPULARITY: '/medicine-popularity',

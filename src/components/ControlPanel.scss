@@ -1,9 +1,9 @@
-.repair-container {
+.control-panel-container {
   padding: 24px;
   min-height: 100vh;
   background-color: var(--color-neutral);
 
-  .repair-title {
+  .control-panel-title {
     font-size: 28px;
     font-weight: 600;
     margin-bottom: 20px;
@@ -26,12 +26,12 @@
     }
   }
 
-  .control-panel {
+  .control-panel-buttons {
     display: flex;
     gap: 10px;
     margin-bottom: 20px;
 
-    .control-button {
+    .state-button {
       padding: 8px 14px;
       border: none;
       background-color: #2563eb;

@@ -250,7 +250,9 @@ const MedicinePopularityView = () => {
             ) : items.length ? (
               <Bar data={chartData} options={chartOptions} />
             ) : (
-              <div className='flex h-full items-center justify-center text-slate-400'>No dispense data for this period</div>
+              <div className='flex h-full items-center justify-center text-slate-400'>
+                No dispense data for this period
+              </div>
             )}
           </div>
         </div>

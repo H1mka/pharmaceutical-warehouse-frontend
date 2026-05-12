@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useMedicineTableContext } from '../../providers/MedicineTableProvider'
+import { useTableContext } from '../../providers/TableProvider'
 
 import './Table.scss'
 
@@ -14,16 +14,18 @@ const formatHeaderColumnName = (column = '') => {
   return columnSplit.join(' ')
 }
 
-const Table = ({ className = '', externalHeaders }) => {
-  const { medicines = [], selected, setSelected, isRowSelected, toggleSelectRow } = useMedicineTableContext()
+const Table = ({ className = '', externalHeaders, externalData }) => {
+  const { data = [], selected, setSelected, isRowSelected, toggleSelectRow } = useTableContext()
 
-  const internalHeaders = Object.keys(medicines[0] || {}).map((item) => {
+  const internalHeaders = Object.keys(data[0] || {}).map((item) => {
     return { title: formatHeaderColumnName(item), value: item }
   })
 
   // show externalHeaders when it's given
   const headers = Array.isArray(externalHeaders) ? externalHeaders : internalHeaders
+  const mainData = Array.isArray(externalData) ? externalData : data
 
+  console.log(headers)
   return (
     <div>
       <table className={`table ${className}`}>
@@ -35,7 +37,7 @@ const Table = ({ className = '', externalHeaders }) => {
           </tr>
         </thead>
         <tbody>
-          {medicines.map((dataItem) => {
+          {mainData.map((dataItem) => {
             return (
               <tr
                 className={`hover:bg-base-300 ${isRowSelected(dataItem) && 'active-row'}`}

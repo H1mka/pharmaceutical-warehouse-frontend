@@ -1,12 +1,11 @@
 import React, { createContext, useState, useContext, useEffect, useMemo } from 'react'
-import { useMedicines } from '../hooks'
 
-const MedicineTableContext = createContext()
+const TableContext = createContext()
 
-export const MedicineTableProvider = ({ children, isSingleSelect = false }) => {
+export const TableProvider = ({ children, dataHook = Function, isSingleSelect = false }) => {
   const [selected, setSelected] = useState(isSingleSelect ? null : [])
 
-  const medicineData = useMedicines()
+  const data = typeof dataHook === 'function' ? dataHook() : {}
 
   /**
    * Select rows logic
@@ -36,7 +35,7 @@ export const MedicineTableProvider = ({ children, isSingleSelect = false }) => {
 
   const providerValue = useMemo(
     () => ({
-      ...medicineData,
+      ...data,
       selected,
       setSelected,
       toggleSelectRow,
@@ -44,10 +43,10 @@ export const MedicineTableProvider = ({ children, isSingleSelect = false }) => {
       clearSelected,
       isSingleSelect,
     }),
-    [medicineData, selected, toggleSelectRow, isRowSelected, clearSelected, isSingleSelect]
+    [data, selected, toggleSelectRow, isRowSelected, clearSelected, isSingleSelect]
   )
 
-  return <MedicineTableContext.Provider value={providerValue}>{children}</MedicineTableContext.Provider>
+  return <TableContext.Provider value={providerValue}>{children}</TableContext.Provider>
 }
 
-export const useMedicineTableContext = () => useContext(MedicineTableContext)
+export const useTableContext = () => useContext(TableContext)

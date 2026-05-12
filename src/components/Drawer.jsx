@@ -50,10 +50,10 @@ const Drawer = () => {
           {/* Show Repair only for admin */}
           {user && user.role === 'admin' && (
             <li>
-              <NavLink to={ROUTES.REPAIR} className='is-drawer-close:hidden'>
-                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Repair page'>
-                  {/* <!-- Repair icon --> */}
-                  Repair
+              <NavLink to={ROUTES.CONTROL_PANEL} className='is-drawer-close:hidden'>
+                <button className='is-drawer-close:tooltip is-drawer-close:tooltip-right' data-tip='Control panel page'>
+                  {/* <!-- Control panel icon --> */}
+                  Control Panel
                 </button>
               </NavLink>
             </li>
