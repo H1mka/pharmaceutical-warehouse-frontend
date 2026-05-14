@@ -26,8 +26,8 @@ const useManipulator = () => {
   useEffect(() => {
     fetchAllLogs()
   }, [])
-
-  return { fetchAllData: fetchAllLogs, data: logs, pagination, isLoading }
+  // return { fetchAllData: fetchAllLogs, data: logs, pagination, isLoading }
+  return { fetchAllLogs, fetchAllData: fetchAllLogs, logs, setLogs, pagination, isLoading }
 }
 
 export default useManipulator
