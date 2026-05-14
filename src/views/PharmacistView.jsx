@@ -1,41 +1,41 @@
-import { useState, useEffect } from 'react'
-import { useMedicines } from '../hooks'
-import Table from '../components/Table'
-import TablePagination from '../components/TablePagination'
+import { useState } from 'react'
+import Table from '../components/Table/Table'
+import TablePagination from '../components/Table/TablePagination'
+import TableNameSearch from '../components/Table/TableNameSearch'
+import Loader from '../components/Loader'
+import QRScanner from '../components/QRScanner'
+import MedicineTableActions from '../components/medicines/MedicineTableActions'
+import DispenseProductModal from '../components/medicines/DispenseProductModal'
+
+import { useTableContext } from '../providers/TableProvider'
 
 const PharmacistView = () => {
-  const { medicines, pagination, fetchAllMedicines } = useMedicines()
+  const { isLoading, dispenseMedicine, clearSelected } = useTableContext()
+  const [dispenseMedicineItem, setDispenseMedicineItem] = useState(null)
 
-  // let findedMed = medications.filter((item) => {
-  //   if (searchingMed.length > 0) return item.name.toLowerCase().includes(searchingMed.toLowerCase())
-  // })
+  const handleDispenseSubmit = async (data) => {
+    await dispenseMedicine(dispenseMedicineItem?.sku, data)
+    clearSelected()
+  }
 
   return (
-    <div>
-      <Table data={medicines} />
-      <TablePagination pagination={pagination} fetchData={fetchAllMedicines} />
+    <div className='pharmacist-view-wrapper'>
+      <MedicineTableActions onDispense={setDispenseMedicineItem} />
 
-      {/* <h1>Medications</h1>
-      <input
-        className='input validator outline-none border-[#ecf9ff99]'
-        type='search'
-        id='search'
-        placeholder='Search'
-        value={searchingMed}
-        onChange={(e) => setSearchingMed(e.target.value)}
+      <TableNameSearch className={'mb-4'} />
+
+      <Table className={'mb-4'} />
+
+      <TablePagination />
+
+      <Loader isLoading={isLoading} />
+
+      <DispenseProductModal
+        isOpen={Boolean(dispenseMedicineItem)}
+        medicine={dispenseMedicineItem}
+        onClose={() => setDispenseMedicineItem(null)}
+        onSubmit={handleDispenseSubmit}
       />
-      <div>
-        {' '}
-        <h2>Are you looking for this?</h2>
-        {findedMed.map((item) => (
-          <div key={item.id}>
-            <ul>
-              <li>{item.name}</li>
-              <li>{item.category}</li>
-            </ul>
-          </div>
-        ))}
-      </div> */}
     </div>
   )
 }

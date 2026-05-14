@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import mqtt from "mqtt";
-import "../components/ControlPanel.scss";
-import { useManipulator } from "../hooks";
-import { manipulatorApi } from "../api";
-import Table from "../components/Table";
-import TablePagination from "../components/TablePagination";
+import '../components/ControlPanel.scss'
+import { useTableContext } from '../providers/TableProvider'
+import { manipulatorApi } from '../api'
+import Table from '../components/Table/Table'
+import TablePagination from '../components/Table/TablePagination'
 
 const ControlPanel = () => {
   const [systemStatus, setSystemStatus] = useState({
@@ -13,7 +13,7 @@ const ControlPanel = () => {
     currentOperation: 'Unknown'
   })
 
-  const { fetchAllLogs, logs, setLogs, pagination, isLoading } = useManipulator();
+  const { fetchAllLogs, logs, setLogs, pagination, isLoading } = useTableContext();
 
   useEffect(() => {
     // 1. Initial status fetch
@@ -85,13 +85,23 @@ const ControlPanel = () => {
 
   const tableData = logs.map((log) => ({
     id: log.id,
-    Time: new Date(log.timestamp).toLocaleTimeString(),
+    Time: (() => { const d = new Date(log.timestamp); return `${d.toLocaleString('uk-UA', { dateStyle: 'short', timeStyle: 'medium' })}.${String(d.getMilliseconds()).padStart(3, '0')}`; })(),
     Action: log.operation_type,
     Status: log.operation_status,
-    "Location": log.storage_location || "-",
-    "Product": log.product || "-",
-    "Qty": log.product_quantity || "-"
-  }));
+    'Loc ID': log.storage_location || '-',
+    'Prod ID': log.product || '-',
+    Qty: log.product_quantity || '-',
+  }))
+
+  const tableHeaders = [
+    // { title: 'Id', value: 'id' },
+    { title: 'Time', value: 'Time' },
+    { title: 'Action', value: 'Action' },
+    { title: 'Status', value: 'Status' },
+    { title: 'Location', value: 'Loc ID' },
+    { title: 'Product', value: 'Prod ID' },
+    { title: 'Qty', value: 'Qty' },
+  ]
 
   return (
     <div className='control-panel-container'>
@@ -104,19 +114,13 @@ const ControlPanel = () => {
         <li>Current operation: <strong>{systemStatus.currentOperation}</strong></li>
       </ul>
 
-      <h2 className="section-title">Control Panel</h2>
-      <div className="control-panel-buttons">
-        <button
-          className="state-button"
-          onClick={startRobot}
-          disabled={systemStatus.manipulatorState === 'ON'}>
+      <h2 className='section-title'>Control Panel</h2>
+      <div className='control-panel-buttons'>
+        <button className='state-button' onClick={startRobot} disabled={systemStatus.manipulatorState === 'ON'}>
           Start Robot
         </button>
 
-        <button
-          className='state-button'
-          onClick={stopRobot}
-          disabled={systemStatus.manipulatorState === 'OFF'}>
+        <button className='state-button' onClick={stopRobot} disabled={systemStatus.manipulatorState === 'OFF'}>
           Stop Robot
         </button>
       </div>
@@ -127,17 +131,15 @@ const ControlPanel = () => {
       ) : (
         <>
           {tableData.length > 0 ? (
-            <Table data={tableData} />
+            <Table externalData={tableData} externalHeaders={tableHeaders} />
           ) : (
             <p>No logs found.</p>
           )}
-          {pagination && pagination.total_pages > 1 && (
-            <TablePagination pagination={pagination} fetchData={fetchAllLogs} />
-          )}
+          {pagination.total_pages > 1 && <TablePagination pagination={pagination} fetchData={fetchAllLogs} />}
         </>
       )}
     </div>
   )
 }
 
-export default ControlPanel;
+export default ControlPanel
