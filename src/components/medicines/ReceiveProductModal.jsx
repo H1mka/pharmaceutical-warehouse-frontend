@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-const DispenseProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
+const ReceiveProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
   const [quantity, setQuantity] = useState(1)
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -34,7 +34,7 @@ const DispenseProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
       await onSubmit({ quantity: parsedQuantity })
       handleClose()
     } catch (submitError) {
-      const message = submitError?.response?.data?.error || 'Failed to dispense product'
+      const message = submitError?.response?.data?.error || 'Failed to receive product'
       setError(message)
     } finally {
       setIsSubmitting(false)
@@ -44,7 +44,7 @@ const DispenseProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
   return (
     <dialog className='modal modal-open'>
       <div className='modal-box max-w-md'>
-        <h3 className='text-lg font-semibold'>Dispense product</h3>
+        <h3 className='text-lg font-semibold'>Receive product</h3>
 
         <div className='mt-3 text-sm text-gray-600'>
           <div>{medicine?.name}</div>
@@ -71,8 +71,8 @@ const DispenseProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
               Cancel
             </button>
 
-            <button type='submit' className='btn btn-success' disabled={isSubmitting}>
-              {isSubmitting ? 'Dispensing...' : 'Dispense'}
+            <button type='submit' className='btn bg-(--primary-blue)' disabled={isSubmitting}>
+              {isSubmitting ? 'Receiving...' : 'Receive'}
             </button>
           </div>
         </form>
@@ -87,4 +87,4 @@ const DispenseProductModal = ({ isOpen, medicine, onClose, onSubmit }) => {
   )
 }
 
-export default DispenseProductModal
+export default ReceiveProductModal
