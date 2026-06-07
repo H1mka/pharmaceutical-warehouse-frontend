@@ -6,7 +6,6 @@ const ScannerView = ({ onScan }) => {
   const isStarted = useRef(false)
 
   useEffect(() => {
-    // ❗ если уже был создан — не создаём второй
     if (scannerRef.current) return
 
     const scanner = new Html5Qrcode('reader')

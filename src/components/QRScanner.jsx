@@ -26,16 +26,15 @@ const QRScanner = () => {
     const data = await res.json()
     console.log('BACKEND:', data)
 
-    // ✅ найден или создан
     if (data.product) {
       setProduct(data.product)
       setMode('result')
       return
     }
 
-    // только SKU форма
+    // only SKU form
     if (data.needs_input) {
-      setSku(data.sku) // 🔥 ВОТ ГЛАВНОЕ
+      setSku(data.sku)
       setProduct(data.data || {})
       setMode('form')
       return
