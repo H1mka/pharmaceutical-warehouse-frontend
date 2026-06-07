@@ -47,6 +47,46 @@ const useMedicines = () => {
     }
   }
 
+  const receiveMedicine = async (sku, data) => {
+    if (!sku || typeof data !== 'object') return
+
+    try {
+      setIsLoading(true)
+
+      const response = await medicinesApi.receive(sku, data)
+
+      if (response.status < 200 || response.status > 205) return
+
+      await fetchAllMedicines()
+      return response.data
+    } catch (error) {
+      console.error('Error while receiving Medicine:', error)
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
+  const deleteMedicine = async (sku) => {
+    if (!sku) return
+
+    try {
+      setIsLoading(true)
+
+      const response = await medicinesApi.delete(sku)
+
+      if (response.status < 200 || response.status > 205) return
+
+      await fetchAllMedicines()
+      return response.data
+    } catch (error) {
+      console.error('Error while deleting Medicine:', error)
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const applyProductUpdate = (message) => {
     const { event, product } = message || {}
     if (!event || !product?.id) return
@@ -67,7 +107,11 @@ const useMedicines = () => {
   }
 
   useEffect(() => {
-    fetchAllMedicines()
+    const timeoutId = setTimeout(() => {
+      fetchAllMedicines()
+    }, 0)
+
+    return () => clearTimeout(timeoutId)
   }, [])
 
   useEffect(() => {
@@ -77,7 +121,16 @@ const useMedicines = () => {
     })
   }, [])
 
-  return { fetchAllData: fetchAllMedicines, dispenseMedicine, data: medicines, pagination, isLoading, mqttStatus }
+  return {
+    fetchAllData: fetchAllMedicines,
+    dispenseMedicine,
+    receiveMedicine,
+    deleteMedicine,
+    data: medicines,
+    pagination,
+    isLoading,
+    mqttStatus,
+  }
 }
 
 export default useMedicines
