@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
 import { medicinesApi } from '../api'
+import { subscribeToProductUpdates } from '../services/productMqtt'
 
 const useMedicines = () => {
   const [medicines, setMedicines] = useState([])
   const [pagination, setPagination] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [mqttStatus, setMqttStatus] = useState('idle')
 
   const fetchAllMedicines = async (params = {}) => {
     try {
@@ -45,12 +47,37 @@ const useMedicines = () => {
     }
   }
 
+  const applyProductUpdate = (message) => {
+    const { event, product } = message || {}
+    if (!event || !product?.id) return
+
+    setMedicines((prev) => {
+      if (event === 'PRODUCT_DELETED') {
+        return prev.filter((item) => item.id !== product.id)
+      }
+
+      const productIndex = prev.findIndex((item) => item.id === product.id)
+
+      if (productIndex === -1) {
+        return [product, ...prev]
+      }
+
+      return prev.map((item, index) => (index === productIndex ? { ...item, ...product } : item))
+    })
+  }
+
   useEffect(() => {
-    console.log('Mounted')
     fetchAllMedicines()
   }, [])
 
-  return { fetchAllData: fetchAllMedicines, dispenseMedicine, data: medicines, pagination, isLoading }
+  useEffect(() => {
+    return subscribeToProductUpdates({
+      onMessage: applyProductUpdate,
+      onStatusChange: setMqttStatus,
+    })
+  }, [])
+
+  return { fetchAllData: fetchAllMedicines, dispenseMedicine, data: medicines, pagination, isLoading, mqttStatus }
 }
 
 export default useMedicines
