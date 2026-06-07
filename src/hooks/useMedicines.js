@@ -67,6 +67,26 @@ const useMedicines = () => {
     }
   }
 
+  const deleteMedicine = async (sku) => {
+    if (!sku) return
+
+    try {
+      setIsLoading(true)
+
+      const response = await medicinesApi.delete(sku)
+
+      if (response.status < 200 || response.status > 205) return
+
+      await fetchAllMedicines()
+      return response.data
+    } catch (error) {
+      console.error('Error while deleting Medicine:', error)
+      throw error
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   const applyProductUpdate = (message) => {
     const { event, product } = message || {}
     if (!event || !product?.id) return
@@ -105,6 +125,7 @@ const useMedicines = () => {
     fetchAllData: fetchAllMedicines,
     dispenseMedicine,
     receiveMedicine,
+    deleteMedicine,
     data: medicines,
     pagination,
     isLoading,
